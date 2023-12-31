@@ -46,7 +46,8 @@ THIRD_APPS = [
  'rest_framework'
 ]
 MY_APPS = [
-    'users'
+    'users',
+    'announcement'
 ]
 
 REST_FRAMEWORK = {
