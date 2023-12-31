@@ -33,3 +33,14 @@ class AnnouncementSerializer(serializers.ModelSerializer):
 
         return announcement
     
+    def update(self, instance, validated_data):
+        images_data = self.context['request'].FILES.getlist('image')
+        if images_data:
+            for image_data in images_data:
+                upload_result = cloudinary.uploader.upload(image_data)
+                image_url = upload_result.get('url')
+                Photos.objects.create(anuncio = instance, image=image_url)
+        return instance
+    
+
+    
