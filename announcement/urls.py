@@ -6,5 +6,5 @@ from . import views
 
 
 urlpatterns = [
-    path("announcement/", views.AnnouncementCreateView.as_view()),
+    path("announcement", views.AnnouncementCreateView.as_view()),
 ]
