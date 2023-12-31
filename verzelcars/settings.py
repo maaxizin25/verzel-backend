@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 import dotenv
+import cloudinary
 
 
 dotenv.load_dotenv()
@@ -43,12 +44,19 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_APPS = [
- 'rest_framework'
+ 'rest_framework',
+ 'cloudinary'
 ]
 MY_APPS = [
     'users',
     'announcement'
 ]
+
+cloudinary.config(
+    cloud_name="dtn0e6dns",
+    api_key="388913449531227",
+    api_secret="1sx1VYn7pF-2bMp67t9IS44BiBg"
+)
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
