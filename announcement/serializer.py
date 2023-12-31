@@ -31,9 +31,5 @@ class AnnouncementSerializer(serializers.ModelSerializer):
 
                 Photos.objects.create(anuncio = announcement, image=image_url)
 
-
-
-        
-
         return announcement
     
