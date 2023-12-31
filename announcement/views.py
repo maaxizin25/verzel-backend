@@ -10,4 +10,5 @@ class AnnouncementCreateView(generics.ListCreateAPIView):
     permission_classes=[myCustomPermission]
 
     def perform_create(self, serializer):
+        print(self.request)
         serializer.save(user=self.request.user)
