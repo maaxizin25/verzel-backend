@@ -33,6 +33,17 @@ class AnnouncementSerializer(serializers.ModelSerializer):
 
         return announcement
     
+    def validate(self, data):
+        request = self.context.get('request')
+        if request and request.method == "PATCH":
+            return data
+
+        images_data = self.initial_data.getlist('image')
+        if not images_data:
+            raise serializers.ValidationError("É necessário fornecer pelo menos uma imagem.")
+
+        return data
+    
     def update(self, instance, validated_data):
         images_data = self.context['request'].FILES.getlist('image')
         if images_data:
