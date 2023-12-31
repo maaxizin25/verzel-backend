@@ -1,0 +1,40 @@
+# Arquivos Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Arquivos de ambiente
+.env
+
+# Banco de dados SQLite
+db.sqlite3
+
+# Diretório de configuração do PyCharm
+.idea/
+
+# Diretório de configuração do Visual Studio Code
+.vscode/
+
+# Arquivos de registro
+*.log
+
+# Diretório de mídia (contém uploads de usuários, etc.)
+media/
+
+# Arquivos de migração do Django
+/migrations/
+
+# Arquivos compilados de tradução
+*.mo
+*.pot
+
+# Arquivos de configuração do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de cache
+__pycache__/
+
+# Arquivos de dependências
+venv/
+env/
