@@ -51,6 +51,7 @@ MY_APPS = [
 
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + MY_APPS
+AUTH_USER_MODEL = 'users.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -8,3 +8,9 @@ class UserCreateView(generics.ListCreateAPIView):
     queryset=User.objects.all()
     serializer_class=UserSerializer
 
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=User.objects.all()
+    serializer_class=UserSerializer
+
+    lookup_field= "id"
+    lookup_url_kwarg = "id"
