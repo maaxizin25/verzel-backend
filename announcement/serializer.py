@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from announcement.models import Announcement, Photos
-from users.serializer import UserSerializer
+from users.models import User
 from django.core.files.storage import FileSystemStorage
 import cloudinary.uploader
 
@@ -8,6 +8,14 @@ class PhotosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photos
         fields = ['id', 'image']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'name', 'email']
+
+
 
 class AnnouncementSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
@@ -51,6 +59,8 @@ class AnnouncementSerializer(serializers.ModelSerializer):
                 upload_result = cloudinary.uploader.upload(image_data)
                 image_url = upload_result.get('url')
                 Photos.objects.create(anuncio = instance, image=image_url)
+        for field_name, value in validated_data.items():
+            setattr(instance, field_name, value)
         return instance
     
 
