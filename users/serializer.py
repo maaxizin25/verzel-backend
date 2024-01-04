@@ -1,14 +1,31 @@
 from rest_framework import serializers
 from users.models import User
+from announcement.models import Announcement
+from announcement.models import Photos
 
+class PhotosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photos
+        fields = ['id', 'image']
+
+
+
+class AnnouncementSerializer(serializers.ModelSerializer):
+    photos = PhotosSerializer(many=True, read_only=True)
+
+    class Meta:
+        model =Announcement
+        fields = ['id', 'nome', 'marca', 'model', 'ano', 'valor', 'km', 'placa', 'cor', 'transmissao', 'descricao', 'user', 'photos']
 
 class UserSerializer(serializers.ModelSerializer):
+    announcements = AnnouncementSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ['name', 'email', 'password']
+        fields = ['name', 'email', 'password', 'announcements']
         
         extra_kwargs = {
-            "password": {"write_only": True}
+            "password": {"write_only": True},
         }
 
     def create(self, validated_data):
@@ -22,3 +39,9 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(validated_data["password"])
         instance.save()
         return instance
+    
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        announcements = AnnouncementSerializer(Announcement.objects.filter(user=instance), many=True).data
+        data['announcements'] = announcements
+        return data
