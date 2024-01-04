@@ -15,6 +15,7 @@ import os
 import dotenv
 import cloudinary
 import dj_database_url
+from datetime import timedelta
 
 
 dotenv.load_dotenv()
@@ -72,6 +73,9 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
 }
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + MY_APPS
