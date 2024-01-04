@@ -61,6 +61,7 @@ class AnnouncementSerializer(serializers.ModelSerializer):
                 Photos.objects.create(anuncio = instance, image=image_url)
         for field_name, value in validated_data.items():
             setattr(instance, field_name, value)
+        instance.save()
         return instance
     
 
