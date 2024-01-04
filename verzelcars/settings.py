@@ -46,7 +46,8 @@ DJANGO_APPS = [
 ]
 THIRD_APPS = [
  'rest_framework',
- 'cloudinary'
+ 'cloudinary',
+ 'corsheaders'
 ]
 MY_APPS = [
     'users',
@@ -58,6 +59,11 @@ cloudinary.config(
     api_key="388913449531227",
     api_secret="1sx1VYn7pF-2bMp67t9IS44BiBg"
 )
+CORS_ALLOWED_ORIGINS = [
+    # 
+]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
@@ -79,6 +85,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'verzelcars.urls'
